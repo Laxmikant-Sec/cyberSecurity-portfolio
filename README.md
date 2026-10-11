@@ -27,6 +27,14 @@ The portfolio includes:
 
 ## Featured Projects
 
+### Archer BE230 Network Recovery and pfSense Kea DHCP Migration
+
+Recovered management access to an Archer BE230 V1 wireless access point without a factory reset. Traced an unreachable management interface to mismatched static IPv4, gateway and DNS configuration; used isolated Ethernet, ARP, PowerShell and Nmap to locate the actual management address. Disabled AP-side DHCP, restored management at `192.168.10.10`, and validated wireless connectivity, Internet access, DNS, and a configuration backup. Separately migrated pfSense CE 2.9.0 from ISC to Kea DHCP, confirmed service and DHCP logs and removed obsolete static reservations.
+
+- [Portfolio case study](https://shivansh2589.github.io/cyberSecurity-portfolio/archer-kea-network-recovery.html)
+- [Detailed technical walkthrough](https://github.com/shivansh2589/cybersecurity-home-lab/blob/main/Network-Recovery-Archer-Kea/README.md)
+
+
 ### Kali–Wazuh SSH Detection and Defense
 
 Validated controlled SSH failures on a dedicated test bridge, traced journald events to a real custom Wazuh rule 100510 alert, and tested account-specific password restrictions. A fresh management login succeeded, and the temporary test-network firewall allowance was removed.
