@@ -1,0 +1,50 @@
+name: Add Archer recovery to homepage
+on:
+  push:
+    paths:
+      - '.github/workflows/add-archer-recovery.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add project card to homepage
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          html = p.read_text(encoding='utf-8')
+          marker = '<!-- archer-kea-recovery-project -->'
+          if marker in html:
+              print('Already present')
+              raise SystemExit(0)
+          card = """
+          <!-- archer-kea-recovery-project -->
+          <section id="archer-kea-recovery" style="padding:48px 24px;background:#101f35;color:#ecf3ff">
+            <div style="max-width:1000px;margin:0 auto">
+              <p style="text-transform:uppercase;letter-spacing:.1em;font-size:.8rem;color:#a9cce6">Verified Network Recovery · October 2026</p>
+              <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin:12px 0;color:#eaf4ff">TP-Link Archer BE230 Recovery &amp; pfSense Kea DHCP Migration</h2>
+              <p style="max-width:800px;line-height:1.7;color:#d3e0ef">Recovered access-point management without a factory reset by diagnosing mismatched static IP, gateway and DNS settings and disabling AP-side DHCP. Migrated pfSense CE 2.9.0 from ISC to Kea DHCP, verified service logs, Internet and DNS connectivity, and preserved lab device access.</p>
+              <a href="archer-kea-network-recovery.html" style="display:inline-block;margin-top:12px;padding:12px 20px;border-radius:8px;border:1px solid #75bae8;color:#c3e8ff;text-decoration:none">View Network Recovery Case Study →</a>
+            </div>
+          </section>
+          """
+          if '</main>' in html:
+              html = html.replace('</main>', card + '\n</main>', 1)
+          elif '</body>' in html:
+              html = html.replace('</body>', card + '\n</body>', 1)
+          else:
+              raise SystemExit('No safe page insertion point found; homepage unchanged.')
+          p.write_text(html, encoding='utf-8')
+      - name: Commit updated homepage
+        run: |
+          if git diff --quiet -- index.html; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m "Feature verified Archer BE230 recovery on homepage"
+          git push
