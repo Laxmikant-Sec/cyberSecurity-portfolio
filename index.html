@@ -31,9 +31,9 @@
     nav{display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:22px}
     .brand{font-weight:800;letter-spacing:.4px}.brand span{color:var(--accent)}
     .navlinks{display:flex;flex-wrap:wrap;gap:18px;font-size:.95rem}.navlinks a{color:var(--muted)}.navlinks a:hover{color:var(--accent)}
-    .hero{min-height:88vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}
+    .hero{min-height:65vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}
     .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,rgba(17,215,255,.12),transparent 42%)}
-    .hero-content{position:relative;max-width:900px;padding:80px 0}
+    .hero-content{position:relative;max-width:900px;padding:40px 0}
     .eyebrow{font-family:Consolas,monospace;color:var(--accent);font-size:1rem;margin-bottom:14px}
     h1{font-size:clamp(3rem,7vw,6.2rem);line-height:.95;margin:.1em 0 .18em;font-weight:900;letter-spacing:-3px}
     h1 span{color:var(--accent)}
@@ -60,6 +60,55 @@
     .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin-top:18px}.contact-links a{color:var(--accent)}
     @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.achievements{grid-template-columns:1fr}.navlinks{gap:11px;font-size:.88rem}}
     @media (max-width:650px){nav{align-items:flex-start;padding:16px 0}.navlinks{justify-content:flex-end}.grid{grid-template-columns:1fr}h1{letter-spacing:-1.5px}.hero{min-height:auto}}
+  
+/* Mobile navigation */
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 650px) {
+  nav {
+    align-items: center;
+    padding: 12px 0;
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+    padding: 10px 14px;
+    background: #15202c;
+    color: #11d7ff;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 8px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .navlinks {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: min(280px, 92vw);
+    padding: 16px;
+    background: #0d1722;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: stretch;
+    z-index: 100;
+  }
+
+  .navlinks.open {
+    display: flex;
+  }
+
+  .navlinks a {
+    padding: 10px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -71,7 +120,17 @@
        alt="LS Cybersecurity Logo"
        style="width:50px;height:50px;object-fit:contain;display:block;">
 </a>
-      <div class="navlinks">
+      
+<button class="menu-toggle" type="button"
+        aria-label="Open navigation menu"
+        aria-controls="mobile-navigation"
+        aria-expanded="false">
+  ☰
+</button>
+
+     
+<div class="navlinks" id="mobile-navigation">
+
         <a href="#about">About</a>
         <a href="#certifications">Certifications</a>
         <a href="#skills">Skills</a>
@@ -96,6 +155,7 @@
         <a class="btn primary" href="#projects">View My Projects</a>
         <a class="btn secondary" href="#certifications">View Certifications</a>
         <a class="btn secondary" href="functional-resume.html">View Resume</a>
+        <a class="btn secondary" href="#homelab">Explore My Home Lab</a>
       </div>
     </div>
   </section>
@@ -298,25 +358,61 @@
       <div class="section-kicker">// Home Lab</div>
       <h2 class="section-title">Cybersecurity lab architecture</h2>
       <p class="section-copy">A segmented wireless home-lab environment used for firewall administration, SIEM, Linux and Windows systems, cloud integration, and troubleshooting.</p>
-      <div class="lab-diagram">Internet / ISP
-    |
-  Orbi Home Network
-  192.168.0.0/24
-    |
-  pfSense Firewall
-  WAN: 192.168.0.15
-  LAN: 192.168.10.1
-    |
-  Lab Network 192.168.10.0/24
-    |
-    +-- TP-Link Access Point / Homelab Wi-Fi
-    +-- Windows 11 Workstation
-    +-- Ubuntu Server
-    +-- Kali Linux
-    +-- Wazuh Server
-    +-- Windows Server 2022
-    +-- Proxmox Virtualization Host
-    +-- Azure Arc / Sentinel / Splunk integrations</div>
+      
+<div class="lab-diagram" style="font-family:inherit;white-space:normal;text-align:center;">
+  <div style="padding:20px;border:1px solid #1d7fff;border-radius:12px;">
+    <h3>🌐 Internet &amp; Home Network</h3>
+    <p>Internet connectivity through the home network</p>
+  </div>
+
+  <div style="font-size:28px;color:#11d7ff;padding:12px;">↓</div>
+
+  <div style="padding:20px;border:1px solid #11d7ff;border-radius:12px;">
+    <h3>🛡️ pfSense Firewall</h3>
+    <p>Network segmentation • Firewall rules • Traffic control</p>
+  </div>
+
+  <div style="font-size:28px;color:#11d7ff;padding:12px;">↓</div>
+
+  <div style="padding:20px;border:1px solid #35536b;border-radius:12px;">
+    <h3>🔐 Isolated Cybersecurity Lab</h3>
+    <p>TP-Link Access Point • Windows 11 • Security Workstations</p>
+  </div>
+
+  <div style="font-size:28px;color:#11d7ff;padding:12px;">↓</div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">🖥️ Proxmox</summary>
+      <p>Virtualization platform hosting the lab servers.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">🛡️ Wazuh SIEM</summary>
+      <p>Security event monitoring, detection, and alerting.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">🪟 Windows Server</summary>
+      <p>Active Directory, authentication, and DNS.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">🐧 Ubuntu &amp; Ansible</summary>
+      <p>Linux administration and infrastructure automation.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">💻 Kali Linux</summary>
+      <p>Controlled cybersecurity testing and learning.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">☁️ Cloud &amp; Security Tools</summary>
+      <p>Azure Arc, Microsoft Sentinel, and Splunk integrations.</p>
+    </details>
+  </div>
+
+  <p style="margin-top:20px;font-size:14px;opacity:.8;">
+    Illustrative lab architecture. Select a system to learn more.
+  </p>
+</div>
+
     </div>
   </section>
 
@@ -430,6 +526,33 @@ function downloadResume() {
   const el = document.getElementById(id);
   if (el) el.addEventListener('click',e=>{e.preventDefault();downloadResume();});
 });
+
+const menuButton = document.querySelector('.menu-toggle');
+const mobileMenu = document.getElementById('mobile-navigation');
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Open navigation menu');
+}
+
+menuButton.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+  menuButton.setAttribute(
+    'aria-label',
+    isOpen ? 'Close navigation menu' : 'Open navigation menu'
+  );
+});
+
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMobileMenu);
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeMobileMenu();
+});
+
 </script>
 </body>
 </html>
