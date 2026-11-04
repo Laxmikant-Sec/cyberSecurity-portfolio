@@ -60,6 +60,55 @@
     .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin-top:18px}.contact-links a{color:var(--accent)}
     @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.achievements{grid-template-columns:1fr}.navlinks{gap:11px;font-size:.88rem}}
     @media (max-width:650px){nav{align-items:flex-start;padding:16px 0}.navlinks{justify-content:flex-end}.grid{grid-template-columns:1fr}h1{letter-spacing:-1.5px}.hero{min-height:auto}}
+  
+/* Mobile navigation */
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 650px) {
+  nav {
+    align-items: center;
+    padding: 12px 0;
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+    padding: 10px 14px;
+    background: #15202c;
+    color: #11d7ff;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 8px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .navlinks {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: min(280px, 92vw);
+    padding: 16px;
+    background: #0d1722;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: stretch;
+    z-index: 100;
+  }
+
+  .navlinks.open {
+    display: flex;
+  }
+
+  .navlinks a {
+    padding: 10px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -71,7 +120,17 @@
        alt="LS Cybersecurity Logo"
        style="width:50px;height:50px;object-fit:contain;display:block;">
 </a>
-      <div class="navlinks">
+      
+<button class="menu-toggle" type="button"
+        aria-label="Open navigation menu"
+        aria-controls="mobile-navigation"
+        aria-expanded="false">
+  ☰
+</button>
+
+     
+<div class="navlinks" id="mobile-navigation">
+
         <a href="#about">About</a>
         <a href="#certifications">Certifications</a>
         <a href="#skills">Skills</a>
@@ -467,6 +526,33 @@ function downloadResume() {
   const el = document.getElementById(id);
   if (el) el.addEventListener('click',e=>{e.preventDefault();downloadResume();});
 });
+
+const menuButton = document.querySelector('.menu-toggle');
+const mobileMenu = document.getElementById('mobile-navigation');
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Open navigation menu');
+}
+
+menuButton.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+  menuButton.setAttribute(
+    'aria-label',
+    isOpen ? 'Close navigation menu' : 'Open navigation menu'
+  );
+});
+
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMobileMenu);
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeMobileMenu();
+});
+
 </script>
 </body>
 </html>
