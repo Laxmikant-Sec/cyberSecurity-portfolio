@@ -299,25 +299,61 @@
       <div class="section-kicker">// Home Lab</div>
       <h2 class="section-title">Cybersecurity lab architecture</h2>
       <p class="section-copy">A segmented wireless home-lab environment used for firewall administration, SIEM, Linux and Windows systems, cloud integration, and troubleshooting.</p>
-      <div class="lab-diagram">Internet / ISP
-    |
-  Orbi Home Network
-  192.168.0.0/24
-    |
-  pfSense Firewall
-  WAN: 192.168.0.15
-  LAN: 192.168.10.1
-    |
-  Lab Network 192.168.10.0/24
-    |
-    +-- TP-Link Access Point / Homelab Wi-Fi
-    +-- Windows 11 Workstation
-    +-- Ubuntu Server
-    +-- Kali Linux
-    +-- Wazuh Server
-    +-- Windows Server 2022
-    +-- Proxmox Virtualization Host
-    +-- Azure Arc / Sentinel / Splunk integrations</div>
+      
+<div class="lab-diagram" style="font-family:inherit;white-space:normal;text-align:center;">
+  <div style="padding:20px;border:1px solid #1d7fff;border-radius:12px;">
+    <h3>🌐 Internet &amp; Home Network</h3>
+    <p>Internet connectivity through the home network</p>
+  </div>
+
+  <div style="font-size:28px;color:#11d7ff;padding:12px;">↓</div>
+
+  <div style="padding:20px;border:1px solid #11d7ff;border-radius:12px;">
+    <h3>🛡️ pfSense Firewall</h3>
+    <p>Network segmentation • Firewall rules • Traffic control</p>
+  </div>
+
+  <div style="font-size:28px;color:#11d7ff;padding:12px;">↓</div>
+
+  <div style="padding:20px;border:1px solid #35536b;border-radius:12px;">
+    <h3>🔐 Isolated Cybersecurity Lab</h3>
+    <p>TP-Link Access Point • Windows 11 • Security Workstations</p>
+  </div>
+
+  <div style="font-size:28px;color:#11d7ff;padding:12px;">↓</div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">🖥️ Proxmox</summary>
+      <p>Virtualization platform hosting the lab servers.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">🛡️ Wazuh SIEM</summary>
+      <p>Security event monitoring, detection, and alerting.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">🪟 Windows Server</summary>
+      <p>Active Directory, authentication, and DNS.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">🐧 Ubuntu &amp; Ansible</summary>
+      <p>Linux administration and infrastructure automation.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">💻 Kali Linux</summary>
+      <p>Controlled cybersecurity testing and learning.</p>
+    </details>
+    <details style="border:1px solid #35536b;border-radius:12px;padding:18px;">
+      <summary style="cursor:pointer;font-weight:bold;">☁️ Cloud &amp; Security Tools</summary>
+      <p>Azure Arc, Microsoft Sentinel, and Splunk integrations.</p>
+    </details>
+  </div>
+
+  <p style="margin-top:20px;font-size:14px;opacity:.8;">
+    Illustrative lab architecture. Select a system to learn more.
+  </p>
+</div>
+
     </div>
   </section>
 
