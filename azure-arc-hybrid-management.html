@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LS Cyber Azure Arc hybrid management project: connecting a Proxmox Ubuntu Server to Microsoft Azure.">
+  <title>Azure Arc Hybrid Management | LS Cyber</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #071018;
+      color: #edf7ff;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    .wrap {
+      max-width: 1050px;
+      margin: auto;
+      padding: 35px 24px 70px;
+    }
+
+    a { color: #11d7ff; }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 35px;
+    }
+
+    .eyebrow {
+      color: #11d7ff;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.2;
+    }
+
+    h2 { color: #81caff; }
+
+    p, li { color: #c7d9e9; }
+
+    .card {
+      background: #0d1722;
+      border: 1px solid #263e51;
+      border-radius: 14px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .status {
+      color: #52d6b5;
+      font-weight: bold;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .fact {
+      background: #101f2e;
+      border: 1px solid #263e51;
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .fact strong {
+      display: block;
+      color: #81caff;
+      margin-bottom: 5px;
+    }
+
+    .evidence {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #31495b;
+      border-radius: 10px;
+    }
+
+    figcaption {
+      color: #a9c0d3;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+
+    code {
+      color: #88dcff;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      border-top: 1px solid #263e51;
+      margin-top: 45px;
+      padding-top: 20px;
+      text-align: center;
+      color: #9eb6c2;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back" href="index.html#projects">&larr; Back to Projects</a>
+
+    <div class="eyebrow">LS Cyber | Project 03</div>
+    <h1>Azure Arc Hybrid Management</h1>
+
+    <p>
+      Connected an on-premises Ubuntu Server running on
+      Proxmox VE to Microsoft Azure using Azure Arc.
+      This project demonstrates hybrid-cloud onboarding,
+      endpoint management, connectivity troubleshooting,
+      and integration with an existing cybersecurity home lab.
+    </p>
+
+    <section class="card">
+      <h2>Project Objective</h2>
+      <p>
+        Establish centralized Azure visibility for a
+        Linux virtual machine hosted outside Microsoft Azure,
+        while preserving existing Wazuh security monitoring
+        and Ansible automation capabilities.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Deployment Summary</h2>
+      <div class="facts">
+        <div class="fact">
+          <strong>Machine</strong>
+          ubuntu-server
+        </div>
+        <div class="fact">
+          <strong>Azure Arc Status</strong>
+          <span class="status">Connected</span>
+        </div>
+        <div class="fact">
+          <strong>Operating System</strong>
+          Ubuntu 26.04.1 LTS
+        </div>
+        <div class="fact">
+          <strong>Virtualization</strong>
+          Proxmox VE / QEMU-KVM
+        </div>
+        <div class="fact">
+          <strong>Azure Region</strong>
+          Canada Central
+        </div>
+        <div class="fact">
+          <strong>Azure Arc Agent</strong>
+          1.70.03595.1654
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Technology Stack</h2>
+      <ul>
+        <li>Microsoft Azure Arc</li>
+        <li>Microsoft Azure Portal</li>
+        <li>Proxmox VE virtualization</li>
+        <li>Ubuntu Server 26.04.1 LTS</li>
+        <li>Linux Bash and systemd</li>
+        <li>Wazuh SIEM/XDR</li>
+        <li>Ansible Core 2.20.1</li>
+        <li>pfSense network firewall</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Deployment and Configuration</h2>
+      <ul>
+        <li>Reviewed the existing Azure Arc resources and subscription.</li>
+        <li>Verified Ubuntu CPU, memory, disk capacity, and operating system.</li>
+        <li>Created a Proxmox recovery snapshot before installation.</li>
+        <li>Downloaded and inspected the Microsoft-generated onboarding script.</li>
+        <li>Verified access to Microsoft package repositories.</li>
+        <li>Installed the Azure Connected Machine agent on Ubuntu.</li>
+        <li>Validated Azure endpoint connectivity using the agent's diagnostic utility.</li>
+        <li>Authenticated with Microsoft and registered the Ubuntu machine.</li>
+        <li>Confirmed the Connected status in Azure Portal.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Technical Troubleshooting</h2>
+      <p>
+        The initial Azure Arc connectivity check reported a missing
+        location argument because the machine was not yet registered.
+        Running the check with
+        <code>--location canadacentral</code>
+        successfully verified access to the required Azure endpoints.
+      </p>
+      <p>
+        An older Azure Arc resource was also identified as offline.
+        The new Proxmox-hosted Ubuntu machine was registered
+        separately to avoid interfering with the earlier resource.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Deployment Evidence</h2>
+      <p>
+        The following screenshot verifies that the Ubuntu Server
+        successfully connected to Microsoft Azure Arc.
+      </p>
+
+      <figure>
+        <a href="assets/azure-arc-ubuntu-connected-nov2026.png"
+           target="_blank" rel="noopener noreferrer">
+          <img
+            class="evidence"
+            src="assets/azure-arc-ubuntu-connected-nov2026.png"
+            alt="Azure Arc Overview showing ubuntu-server Connected, Ubuntu 26.04.1 LTS, and QEMU virtualization">
+        </a>
+        <figcaption>
+          Azure Arc deployment evidence — ubuntu-server reporting
+          Connected in the HomeLab-Lax subscription.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="card">
+      <h2>Post-Deployment Validation</h2>
+      <ul>
+        <li>Azure Arc machine status: <span class="status">Connected</span></li>
+        <li>Azure Arc dependent services: Active</li>
+        <li>Wazuh Agent service: Active</li>
+        <li>Ansible Core 2.20.1: Verified</li>
+        <li>Ansible localhost ping: Successful</li>
+      </ul>
+      <p>
+        Post-installation checks confirmed that Wazuh remained
+        operational and Ansible successfully executed its
+        localhost connectivity test.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Skills Demonstrated</h2>
+      <ul>
+        <li>Hybrid-cloud infrastructure integration</li>
+        <li>Azure Arc onboarding and agent administration</li>
+        <li>Linux server administration</li>
+        <li>Network connectivity diagnostics</li>
+        <li>Virtualization and snapshot management</li>
+        <li>Security monitoring service validation</li>
+        <li>Ansible automation verification</li>
+        <li>Technical documentation and evidence collection</li>
+      </ul>
+    </section>
+
+    <footer>
+      &copy; 2026 Laxmikant Sharma | LS Cyber
+    </footer>
+  </main>
+</body>
+</html>
