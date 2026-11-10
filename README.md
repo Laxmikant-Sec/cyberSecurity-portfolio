@@ -120,7 +120,7 @@ Hands-on work includes:
 - Security event correlation
 - Troubleshooting agent and connectivity issues
 
-### Azure Arc Hybrid Management
+### [Azure Arc Hybrid Management](https://lscyber.ca/azure-arc-hybrid-management.html)
 
 Connected Linux infrastructure to Microsoft Azure using Azure Arc.
 
