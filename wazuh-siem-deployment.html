@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wazuh SIEM Deployment | LS Cyber</title>
+  <meta name="description" content="Hands-on Wazuh SIEM deployment, Windows and Linux endpoint monitoring, and agent connectivity troubleshooting.">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #071018;
+      color: #edf7ff;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+    .wrap {
+      max-width: 1050px;
+      margin: auto;
+      padding: 35px 24px 70px;
+    }
+    a { color: #11d7ff; }
+    .back { display: inline-block; margin-bottom: 35px; }
+    .eyebrow {
+      color: #11d7ff;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; }
+    h2 { color: #81caff; margin-top: 35px; }
+    p, li { color: #c7d9e9; }
+    .card {
+      background: #0d1722;
+      border: 1px solid #263e51;
+      border-radius: 14px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .status { color: #52d6b5; font-weight: bold; }
+    .evidence {
+      width: 100%;
+      height: auto;
+      border: 1px solid #31495b;
+      border-radius: 10px;
+    }
+    figcaption { color: #a9c0d3; margin-top: 12px; }
+    footer {
+      border-top: 1px solid #263e51;
+      margin-top: 45px;
+      padding-top: 20px;
+      text-align: center;
+      color: #9eb6c2;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back" href="index.html#projects">&larr; Back to Projects</a>
+
+    <div class="eyebrow">LS Cyber | Project 02</div>
+    <h1>Wazuh SIEM Deployment &amp; Endpoint Monitoring</h1>
+
+    <p>
+      Deployed and configured Wazuh SIEM/XDR in an isolated
+      cybersecurity home lab to monitor Windows and Linux
+      endpoints, collect security events, and investigate
+      agent connectivity issues.
+    </p>
+
+    <section class="card">
+      <h2>Project Objective</h2>
+      <p>
+        Establish centralized endpoint security monitoring
+        across a virtualized environment using Wazuh,
+        Ubuntu Server, Windows Server 2022, Windows 11,
+        and Kali Linux.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Technology Stack</h2>
+      <ul>
+        <li>Wazuh SIEM/XDR 4.14</li>
+        <li>Proxmox VE virtualization</li>
+        <li>Ubuntu Linux</li>
+        <li>Microsoft Windows Server 2022</li>
+        <li>Microsoft Windows 11</li>
+        <li>Kali Linux</li>
+        <li>pfSense network firewall</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Deployment and Configuration</h2>
+      <ul>
+        <li>Deployed a centralized Wazuh monitoring environment on Ubuntu.</li>
+        <li>Registered Windows and Linux endpoints with the Wazuh manager.</li>
+        <li>Configured endpoint monitoring and log collection.</li>
+        <li>Verified agent services and communication with the manager.</li>
+        <li>Reviewed agent connection status through the Wazuh dashboard.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Agent Connectivity Troubleshooting</h2>
+      <p>
+        Investigated an Ubuntu agent that appeared disconnected
+        in the Wazuh endpoint dashboard. Checked the Linux
+        systemd service and reviewed Wazuh agent logs.
+      </p>
+      <p>
+        Confirmed that the agent service was running and
+        successfully connected to the Wazuh manager over
+        TCP port 1514.
+      </p>
+      <p class="status">
+        Result: Ubuntu endpoint connection restored and
+        verified as Active in the Wazuh dashboard.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Deployment Evidence</h2>
+      <p>
+        The following screenshot was captured on
+        November 9, 2026, showing five registered endpoints.
+        Three agents were active at the time of capture.
+        Two remained disconnected.
+      </p>
+
+      <figure>
+        <a href="assets/wazuh-agent-status-nov2026.png"
+           target="_blank" rel="noopener noreferrer">
+          <img class="evidence"
+               src="assets/wazuh-agent-status-nov2026.png"
+               alt="Wazuh endpoint monitoring dashboard showing five registered agents and three active connections">
+        </a>
+        <figcaption>
+          Wazuh Endpoints: Windows 11, Windows Server 2022,
+          and Ubuntu Server reporting Active. Two additional
+          registered Linux agents were disconnected.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="card">
+      <h2>Skills Demonstrated</h2>
+      <ul>
+        <li>SIEM deployment and configuration</li>
+        <li>Windows and Linux endpoint monitoring</li>
+        <li>Security log collection and analysis</li>
+        <li>Linux service troubleshooting</li>
+        <li>Agent-to-manager connectivity verification</li>
+        <li>Technical documentation and evidence collection</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Related Security Investigation</h2>
+      <p>
+        For Active Directory privileged-account monitoring,
+        custom Wazuh detection rules, and email alerting,
+        see the related Proxmox and Wazuh investigation.
+      </p>
+      <a href="proxmox-wazuh-ad.html">
+        View Active Directory Monitoring Case Study &rarr;
+      </a>
+    </section>
+
+    <footer>
+      &copy; 2026 Laxmikant Sharma | LS Cyber
+    </footer>
+  </main>
+</body>
+</html>
